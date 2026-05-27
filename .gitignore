@@ -9,15 +9,5 @@ node_modules/
 # Local Mock Database
 db.json
 
-# UniApp & Vue build outputs
-dist/
-# unpackage/
-*.local
-
-# Logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
 # EdgeOne specific
 .edgeone/
