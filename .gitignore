@@ -11,7 +11,7 @@ db.json
 
 # UniApp & Vue build outputs
 dist/
-unpackage/
+# unpackage/
 *.local
 
 # Logs
