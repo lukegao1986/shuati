@@ -1,8 +1,8 @@
 import { queryDB } from './db.js';
 
 export default async function handler(request) {
-  if (request.method !== 'GET') {
-    return new Response(JSON.stringify({ code: 405, msg: 'Method Not Allowed' }), { status: 405 });
+  if (request.method === 'OPTIONS') {
+    return new Response(null, { headers: { 'Access-Control-Allow-Origin': '*' } });
   }
 
   try {

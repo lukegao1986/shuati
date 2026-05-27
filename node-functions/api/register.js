@@ -1,8 +1,9 @@
 import { queryDB } from './db.js';
 
 export default async function handler(request) {
-  if (request.method !== 'POST') {
-    return new Response(JSON.stringify({ code: 405, msg: 'Method Not Allowed' }), { status: 405 });
+  // EdgeOne 环境下，使用 GET 方式读取 body 时会报错，我们放宽对 method 的校验，以适应部分浏览器的跨域 preflight 行为
+  if (request.method === 'OPTIONS') {
+    return new Response(null, { headers: { 'Access-Control-Allow-Origin': '*' } });
   }
 
   try {
