@@ -1,0 +1,8 @@
+{
+  "functions": {
+    "api": {
+      "path": "/api/*",
+      "entry": "node-functions/api"
+    }
+  }
+}
