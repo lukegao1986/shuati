@@ -1,5 +1,5 @@
 // 环境配置
-const ENV = 'development'; // 'development' | 'production'
+const ENV = 'production'; // 'development' | 'production'
 
 const config = {
   development: {
@@ -7,8 +7,9 @@ const config = {
     API_BASE_URL: 'http://localhost:3000/api'
   },
   production: {
-    // EdgeOne 线上边缘函数接口地址
-    API_BASE_URL: 'https://test-eju-ppow4mv7.edgeone.cool/api'
+    // 一体化部署后，前端和后端 API 是同源的（都在同一个域名下）
+    // 所以这里直接使用相对路径，让浏览器自动补全当前域名
+    API_BASE_URL: '/api'
   }
 };
 
