@@ -3,7 +3,11 @@ import { queryDB } from './db.js';
 export default async function handler(request) {
   // EdgeOne 环境下，使用 GET 方式读取 body 时会报错，我们放宽对 method 的校验，以适应部分浏览器的跨域 preflight 行为
   if (request.method === 'OPTIONS') {
-    return new Response(null, { headers: { 'Access-Control-Allow-Origin': '*' } });
+    return new Response(null, { headers: { 
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization'
+    } });
   }
 
   // 增加拦截：防止浏览器预检通过后，发出的实际 POST 请求因为其他异常或平台原因依然被阻断。
@@ -11,7 +15,10 @@ export default async function handler(request) {
   if (request.method !== 'POST') {
      return new Response(JSON.stringify({ code: 405, msg: `Method ${request.method} Not Allowed` }), { 
          status: 405,
-         headers: { 'Content-Type': 'application/json' }
+         headers: { 
+           'Content-Type': 'application/json',
+           'Access-Control-Allow-Origin': '*'
+         }
      });
   }
 
@@ -32,9 +39,18 @@ export default async function handler(request) {
       code: 0,
       msg: 'Registration successful',
       data: null
-    }), { headers: { 'Content-Type': 'application/json' } });
+    }), { headers: { 
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
+    } });
     
   } catch (error) {
-    return new Response(JSON.stringify({ code: 500, msg: error.message }), { status: 500 });
+    return new Response(JSON.stringify({ code: 500, msg: error.message }), { 
+      status: 500,
+      headers: { 
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      }
+    });
   }
 }
