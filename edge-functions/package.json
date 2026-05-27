@@ -1,7 +1,0 @@
-{
-  "name": "edge-functions-mock",
-  "version": "1.0.0",
-  "type": "module",
-  "description": "Mock server for EdgeOne API",
-  "main": "server.js"
-}
