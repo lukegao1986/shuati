@@ -5,6 +5,10 @@ export default async function handler(request) {
     return new Response(null, { headers: { 'Access-Control-Allow-Origin': '*' } });
   }
 
+  if (request.method !== 'POST') {
+     return new Response(JSON.stringify({ code: 405, msg: `Method ${request.method} Not Allowed` }), { status: 405 });
+  }
+
   try {
     const body = await request.json();
     const { username, password } = body;

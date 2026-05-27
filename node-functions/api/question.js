@@ -5,6 +5,10 @@ export default async function handler(request) {
     return new Response(null, { headers: { 'Access-Control-Allow-Origin': '*' } });
   }
 
+  if (request.method !== 'GET') {
+     return new Response(JSON.stringify({ code: 405, msg: `Method ${request.method} Not Allowed` }), { status: 405 });
+  }
+
   try {
     // 模拟从 MySQL 获取题库
     const questions = [
