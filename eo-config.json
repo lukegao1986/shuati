@@ -1,8 +1,20 @@
 {
   "functions": {
-    "api": {
-      "path": "/api/*",
-      "entry": "node-functions/api"
+    "api-login": {
+      "path": "/api/login",
+      "entry": "node-functions/api/login.js"
+    },
+    "api-register": {
+      "path": "/api/register",
+      "entry": "node-functions/api/register.js"
+    },
+    "api-question": {
+      "path": "/api/question",
+      "entry": "node-functions/api/question.js"
+    },
+    "api-submit": {
+      "path": "/api/submit",
+      "entry": "node-functions/api/submit.js"
     }
   }
 }
