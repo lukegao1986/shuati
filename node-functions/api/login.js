@@ -5,12 +5,13 @@ export default async function handler(request) {
     return new Response(null, { headers: { 
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type, Authorization'
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
+      'Access-Control-Max-Age': '86400'
     } });
   }
 
   if (request.method !== 'POST') {
-     return new Response(JSON.stringify({ code: 405, msg: `Method ${request.method} Not Allowed` }), { 
+     return new Response(JSON.stringify({ code: 405, msg: `Method ${request.method} Not Allowed in edge function` }), { 
        status: 405,
        headers: { 'Access-Control-Allow-Origin': '*' }
      });

@@ -6,14 +6,15 @@ export default async function handler(request) {
     return new Response(null, { headers: { 
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type, Authorization'
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
+      'Access-Control-Max-Age': '86400'
     } });
   }
 
   // 增加拦截：防止浏览器预检通过后，发出的实际 POST 请求因为其他异常或平台原因依然被阻断。
   // 同时，如果你直接浏览器输入 URL 访问（GET），给予友好的提示而不是走下面的 json 解析报错。
   if (request.method !== 'POST') {
-     return new Response(JSON.stringify({ code: 405, msg: `Method ${request.method} Not Allowed` }), { 
+     return new Response(JSON.stringify({ code: 405, msg: `Method ${request.method} Not Allowed in edge function` }), { 
          status: 405,
          headers: { 
            'Content-Type': 'application/json',
