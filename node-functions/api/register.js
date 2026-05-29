@@ -30,7 +30,13 @@ export default async function handler(request) {
     // 检查用户名是否已存在
     const existingUsers = await queryDB('SELECT id FROM users WHERE username = ?', [username]);
     if (existingUsers && existingUsers.length > 0) {
-      return new Response(JSON.stringify({ code: 400, msg: 'Username already exists' }), { status: 400 });
+      return new Response(JSON.stringify({ code: 400, msg: 'Username already exists' }), { 
+        status: 400,
+        headers: { 
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        }
+      });
     }
 
     // 模拟写入数据库进行注册
