@@ -3,13 +3,12 @@ const ENV = 'production'; // 'development' | 'production'
 
 const config = {
   development: {
-    // 本地调试时的后端接口地址
     API_BASE_URL: 'http://localhost:3000/api'
   },
   production: {
-    // 一体化部署后，前端和后端 API 是同源的（都在同一个域名下）
-    // 所以这里直接使用相对路径，让浏览器自动补全当前域名
-    API_BASE_URL: '/api'
+    // 等你在网页端部署完边缘函数后，把它分配给你的域名填在这里
+    // 例如：'https://eju-api-xxxx.edgeone.cool/api'
+    API_BASE_URL: 'https://填写你的边缘函数分配域名/api'
   }
 };
 
